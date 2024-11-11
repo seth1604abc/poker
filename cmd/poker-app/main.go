@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"poker/config"
-	"poker/internal/model"
+	"poker/internal/api/di"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,7 +17,6 @@ func init() {
 	
 	// 初始化
 	config.InitConfig(*env)
-	model.InitMysql()
 }
 
 func main() {
@@ -27,6 +26,13 @@ func main() {
 			"message": "pong",
 		})
 	})
+
+	appRoute, err := di.InitializeApp()
+	if err != nil {
+		fmt.Printf(`Initialize route error: %v`, err)
+	}
+
+	appRoute.SetUp(r)
 
 	r.Run()
 }

@@ -4,3 +4,6 @@ database:
   username: "root"
   password: "123456"
   databasename: "poker"
+jwt:
+  secretKey: "f39859ce-402a-9f2e-11ca-a0904519402f"
+  expiredTime: 86400

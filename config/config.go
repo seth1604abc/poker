@@ -7,7 +7,8 @@ import (
 )
 
 type config struct {
-	Database databaseConfig
+	Database	databaseConfig	`mapstructure:"database"`
+	JWT			jwtConfig		`mapstructure:"jwt"`
 }
 
 type databaseConfig struct {
@@ -16,6 +17,11 @@ type databaseConfig struct {
 	Username     string `mapstructure:"username"`
 	Password     string `mapstructure:"password"`
 	DatabaseName string `mapstructure:"databasename"`
+}
+
+type jwtConfig struct {
+	SecretKey	string `mapstructure:"secretKey"`
+	ExpiredTime	int `mapstructure:"expiredTime"`
 }
 
 var AppConfig config
